@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>画布</title>
+		
+	</head>
+	<body>	
+	<canvas id="myCanvas" width="200px" height="100px"></canvas>
+	<script type="text/javascript">
+		/*通过id来寻找canvas元素*/
+			var c=document.getElementById("myCanvas");
+			/*创建context对象*/
+			var cxt=c.getContext("2d");
+			/*fileStyle的方法就是将其染成红色,filerect是规定了形状,位置和尺寸	*/	
+			cxt.fillStyle="red";
+			cxt.fillRect(0,0,150,75);
+		</script>
+	</body>
+</html>
