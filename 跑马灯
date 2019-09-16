@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>跑马灯效果</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--注意，在vm实例中，如果想要获取data的数据，或者调用methods中的方法，必须通过
+    this.属性名，this.方法名来进行访问，这里的this就表示new出来的app对象-->
+    <h4>{{msg}}</h4>
+    <input type="button" value="浪起来" v-on:click="lang">
+    <input type="button" value="低调" v-on:click="stop" >
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            msg: "猥琐发育，别浪",
+            intervalId:null //在data定义
+        },
+        methods: {
+            lang() {
+                var _this = this
+                if (_this.intervalId!=null) {
+                    return
+                }
+                _this.intervalId = setInterval(function () {
+                    // console.log(_this.msg)
+                    //    获取到头的第一个字符
+                    var start = _this.msg.substring(0, 1)
+                    //获取到后面的字符
+                    var end = _this.msg.substring(1)
+                    //    重新拼接到新的字符串，并且赋值给this.msg
+                    _this.msg = end + start
+                }, 400)
+            },
+            stop() {
+                clearInterval(this.intervalId)
+                this.intervalId=null;
+            }
+        }
+    })
+</script>
+</body>
+</html>
+<!--第一步：先进行分析，绑定一个点击事件，v-on-->
+<!--第二步：进行截取字符串，写有关的业务逻辑，拿到msg的字符串
+，然后调用字符串的方法substring方法进行截取操作，把第一个字符串取出来，然后放到最后一个位置就可以-->
+<!--第三步：先进行分析，绑定一个点击事件，v-on-->
